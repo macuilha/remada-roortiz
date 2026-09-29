@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remada Roortiz | Passeios de caiaque no manguezal de Vitória</title>
+<meta name="description" content="Passeios de caiaque e barco no manguezal de Vitória-ES desde 2008, com foco em turismo consciente e criativo.">
+<!-- Versão de teste: remover esta linha antes de publicar o site -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#12312F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* CSS específico da Home. Efeitos (reveal, header, pill-nav, botões, rodapé) vêm de styles.css e reveal.js */
+
+  /* Ícones em sprite: o traço herda a cor do texto */
+  .ic{fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0;}
+
+  /* Logomarca no cabeçalho e no rodapé (arte já é um selo circular com fundo transparente) */
+  .logo-img{width:44px; height:auto;}
+  .logo-img-footer{width:48px; height:auto;}
+  .logo-img-hero{width:158px; height:auto; margin:0 auto 20px; filter:drop-shadow(0 14px 26px rgba(0,0,0,.5));}
+
+  /* Aviso de versão de teste e marcador de dado pendente (remover antes de publicar) */
+  .aviso-teste{background:var(--amber-text); color:#fff; font-size:12.5px; font-weight:600; text-align:center; padding:7px 16px;}
+  .pendente{background:#FFE9BF; color:#6A4300; padding:1px 7px; border-radius:6px; font-weight:600;}
+
+  /* Hero em tela cheia: foto com véu escuro na base e texto ancorado embaixo */
+  .hero{position:relative; min-height:680px; display:flex; align-items:flex-end; background:url('images/mangue-raizes.png') center/cover no-repeat; color:#fff;}
+  .hero::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(18,49,47,.25) 0%, rgba(18,49,47,.35) 40%, rgba(18,49,47,.9) 100%);}
+  .hero .wrap{position:relative; z-index:1; width:100%; margin:0 auto; padding-top:100px; padding-bottom:52px; text-align:center; max-width:720px;}
+  .hero h1{color:#fff; font-size:clamp(32px,5vw,54px); font-weight:800; line-height:1.1; margin:0 auto 14px;}
+  .hero-sub{font-family:'Sora',sans-serif; font-weight:600; font-size:19px; color:#BFE8D3; margin-bottom:12px;}
+  .hero p.lead{font-size:15px; color:rgba(255,255,255,.88); max-width:420px; margin:0 auto 26px;}
+  .hero-ctas{display:flex; gap:12px; flex-wrap:wrap; justify-content:center;}
+  .glass-row{display:flex; gap:12px; flex-wrap:wrap;}
+  .glass{display:flex; align-items:center; gap:10px; padding:11px 18px; border-radius:999px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); backdrop-filter:blur(8px); font-size:13px; font-weight:600; color:#fff;}
+  .hero-badge{position:absolute; z-index:1; top:24px; right:24px; background:rgba(18,49,47,.7); backdrop-filter:blur(6px); color:#fff; padding:10px 18px; border-radius:999px; font-size:12.5px; font-weight:600; display:flex; align-items:center; gap:7px;}
+
+  /* Sobre: colagem de duas fotos sobrepostas ao lado do texto */
+  .sobre{display:grid; grid-template-columns:1fr 1.05fr; gap:72px; align-items:center;}
+  .collage{position:relative; padding-bottom:36px;}
+  .collage .big{width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:var(--radius-lg); transition:transform .5s ease;}
+  .collage .small{position:absolute; right:-22px; bottom:0; width:44%; aspect-ratio:1/1; object-fit:cover; border-radius:var(--radius-md); border:6px solid #fff; box-shadow:var(--shadow-card);}
+  .sobre-txt h2{font-size:clamp(26px,3vw,34px); font-weight:800; margin-bottom:14px;}
+  .sobre-txt p{font-size:14.5px; color:var(--muted); margin-bottom:14px; max-width:480px;}
+  .check-list{list-style:none; margin:18px 0 24px;}
+  .check-list li{display:flex; align-items:flex-start; gap:10px; font-size:14px; color:var(--text); padding:6px 0; line-height:1.45;}
+  .check-list .ic{color:var(--blue); margin-top:2px;}
+
+  /* Faixa panorâmica: foto larga com texto e números em vidro */
+  .band{position:relative; min-height:460px; display:flex; align-items:center; background:url('images/caiaque-por-do-sol.png') center 42%/cover no-repeat;}
+  .band::after{content:''; position:absolute; inset:0; background:linear-gradient(100deg, rgba(18,49,47,.94) 28%, rgba(18,49,47,.2) 80%);}
+  .band .wrap{position:relative; z-index:1; width:100%;}
+  .band h2{color:#fff; font-size:clamp(26px,3vw,34px); font-weight:800; max-width:16ch; margin-bottom:12px;}
+  .band p{color:rgba(255,255,255,.85); font-size:14.5px; max-width:400px; margin-bottom:26px;}
+
+  /* Como funciona: três cartões com numeral grande */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .step{border:1px solid var(--border); border-radius:var(--radius-lg); padding:30px 28px; background:#fff; transition:transform .25s ease, box-shadow .25s ease; color:var(--blue);}
+  .step:hover{transform:translateY(-4px); box-shadow:var(--shadow-card);}
+  .step .num{font-family:'Sora',sans-serif; font-weight:800; font-size:46px; line-height:1; opacity:.28; display:block; margin-bottom:14px;}
+  .step h3{font-size:16px; font-family:'Inter',sans-serif; font-weight:700; margin:12px 0 6px;}
+  .step p{font-size:13px; color:var(--muted);}
+
+  /* Painel escuro com os dados práticos do passeio */
+  .dados{background:var(--ink); color:#fff; border-radius:var(--radius-lg); padding:44px; display:grid; grid-template-columns:1fr 1.1fr; gap:48px; align-items:center;}
+  .dados h2{color:#fff; font-size:clamp(24px,2.8vw,30px); font-weight:800; margin-bottom:12px;}
+  .dados p{color:rgba(255,255,255,.8); font-size:14px; margin-bottom:22px; max-width:380px;}
+  .dados dl{display:grid; grid-template-columns:auto 1fr; gap:0 24px;}
+  .dados dt, .dados dd{padding:14px 0; border-bottom:1px solid rgba(255,255,255,.14); font-size:14px;}
+  .dados dt{font-weight:700; color:#B8863B;}
+  .dados dd{color:rgba(255,255,255,.92);}
+
+  /* Pedido: cartão de formulário centralizado */
+  .pedido{max-width:680px; margin:0 auto; text-align:center;}
+  .pedido h2{font-size:clamp(26px,3vw,34px); font-weight:800; margin-bottom:10px;}
+  .pedido > p{font-size:14.5px; color:var(--muted); margin:0 auto 22px; max-width:460px;}
+  .pedido-btns{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:28px;}
+  .pedido-form{text-align:left; border:1px solid var(--border); border-radius:var(--radius-lg); padding:32px; background:#fff; box-shadow:var(--shadow-card); display:grid; gap:16px;}
+  .pedido-form label{font-size:13px; font-weight:600; color:var(--ink); display:grid; gap:6px;}
+  .pedido-form input, .pedido-form textarea{font:inherit; font-size:14px; padding:12px 14px; border:1.5px solid var(--border); border-radius:var(--radius-sm); background:#fff; color:var(--text);}
+  .pedido-form textarea{min-height:84px; resize:vertical;}
+  .linha-dupla{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .form-status{font-size:13px; color:var(--muted); min-height:20px;}
+  .form-status.erro{color:#9B2C1A; font-weight:600;}
+  .form-nota{font-size:12px; color:var(--muted);}
+
+  /* FAQ: título fixo à esquerda e sanfona à direita */
+  .faq-grid{display:grid; grid-template-columns:1fr 1.7fr; gap:56px; align-items:start;}
+  .faq-grid .head{position:sticky; top:96px;}
+  .faq-grid h2{font-size:clamp(24px,2.8vw,30px); font-weight:800; margin-bottom:8px;}
+  .faq-grid .head p{font-size:14px; color:var(--muted); max-width:300px;}
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-item summary{list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 4px; font-weight:700; font-size:15px; color:var(--ink);}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary .plus{flex-shrink:0; width:24px; height:24px; border-radius:50%; background:var(--offwhite); position:relative;}
+  .faq-item summary .plus::before,.faq-item summary .plus::after{content:''; position:absolute; top:50%; left:50%; background:var(--blue); border-radius:1px; transform:translate(-50%,-50%);}
+  .faq-item summary .plus::before{width:10px; height:2px;}
+  .faq-item summary .plus::after{width:2px; height:10px;}
+  .faq-item[open] summary .plus::after{display:none;}
+  .faq-item p{font-size:13.5px; color:var(--muted); padding:0 4px 20px; max-width:560px;}
+
+  /* Barra fixa no celular */
+  .mobile-bar{display:none;}
+
+  /* Ajustes para telas menores */
+  @media (max-width:900px){
+    body{padding-bottom:74px;}
+    .mobile-bar{display:flex; position:fixed; left:0; right:0; bottom:0; z-index:60; background:#fff; border-top:1px solid var(--border); padding:12px 18px; align-items:center; justify-content:space-between; gap:14px; box-shadow:0 -8px 24px -12px rgba(18,49,47,.25); transition:transform .25s ease;}
+    .mobile-bar.is-hidden{transform:translateY(110%);}
+    .mobile-bar span{font-family:'Sora',sans-serif; font-weight:700; color:var(--ink); font-size:14px;}
+    .hero{min-height:620px;}
+    .hero-badge{top:16px; right:16px;}
+    .sobre{grid-template-columns:1fr; gap:48px;}
+    .collage .small{right:10px;}
+    .band{min-height:420px;}
+    .band::after{background:linear-gradient(180deg, rgba(18,49,47,.55) 0%, rgba(18,49,47,.92) 100%);}
+    .steps{grid-template-columns:1fr;}
+    .dados{grid-template-columns:1fr; padding:30px 24px; gap:28px;}
+    .faq-grid{grid-template-columns:1fr; gap:24px;}
+    .faq-grid .head{position:static;}
+  }
+  @media (max-width:520px){ .linha-dupla{grid-template-columns:1fr;} .pedido-form{padding:24px 20px;} }
+
+  /* Atrasos escalonados da animação de entrada */
+  html.reveal-ready .step:nth-child(2){transition-delay:.1s;}
+  html.reveal-ready .step:nth-child(3){transition-delay:.2s;}
+  html.reveal-ready .glass:nth-child(2){transition-delay:.08s;}
+</style>
+</head>
+<body>
+
+<!-- Ícones reutilizáveis (sprite) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 3a9 9 0 00-7.8 13.4L3 21l4.7-1.2A9 9 0 1012 3z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3L20 6.5V11C20 16 16.5 19.7 12 21C7.5 19.7 4 16 4 11V6.5L12 3Z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8V12L15 14"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 9c3-3 6 3 9 0s6 3 9 0M3 15c3-3 6 3 9 0s6 3 9 0"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></symbol>
+</defs></svg>
+
+<div class="aviso-teste">Versão de teste offline. Fotos provisórias de terceiros: substituir antes de publicar.</div>
+
+<header>
+  <div class="nav-inner">
+    <a href="#top" class="logo"><img src="images/logo.png" alt="Remada Roortiz" class="logo-img">Remada Roortiz</a>
+    <nav class="links">
+      <a href="#top" class="active">Home</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#passeio">O Passeio</a>
+      <a href="#faq">Ajuda</a>
+    </nav>
+    <div class="header-right">
+      <a href="#pedido" class="btn btn-primary btn-sm">Pedir Passeio</a>
+      <div class="lang-pill">PT</div>
+    </div>
+  </div>
+</header>
+
+<nav class="pill-nav">
+  <div class="pill-track">
+    <a href="#top" class="active">Home</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#como-funciona">Como Funciona</a>
+    <a href="#passeio">O Passeio</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <section style="padding:0;">
+    <div class="hero">
+      <div class="hero-badge"><svg class="ic" width="13" height="13"><use href="#i-pin"/></svg>Manguezal de Vitória, ES</div>
+      <div class="wrap">
+        <img src="images/logo.png" alt="Remada Roortiz — Passeios de Caiaque" class="logo-img-hero">
+        <h1>Passeios de caiaque no manguezal de Vitória.</h1>
+        <div class="hero-sub">Remar por dentro da cidade.</div>
+        <p class="lead">Para turistas e moradores. Turismo consciente e criativo, com guia local, desde 2008.</p>
+        <div class="hero-ctas">
+          <a href="#pedido" class="btn btn-whatsapp">Pedir um Passeio</a>
+          <a href="#sobre" class="btn btn-outline-light">Conhecer a Remada</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="wrap sobre">
+      <div class="collage reveal">
+        <img class="big" src="images/caiaque-no-mangue.png" alt="Pessoa de colete salva-vidas em um caiaque sob as árvores do mangue, com reflexo na água">
+        <img class="small" src="images/caranguejo.png" alt="Mão segurando um pequeno caranguejo em frente às raízes do mangue">
+      </div>
+      <div class="sobre-txt reveal">
+        <span class="eyebrow">Quem somos</span>
+        <h2>Um dos maiores manguezais urbanos do Brasil fica dentro da capital.</h2>
+        <p>A Remada Roortiz leva turistas e moradores para conhecer o manguezal de Vitória por dentro, remando. Os passeios acontecem desde 2008, com guia que conhece o local.</p>
+        <ul class="check-list">
+          <li><svg class="ic" width="16" height="16"><use href="#i-check"/></svg>Raízes aéreas e canais estreitos dentro do mangue</li>
+          <li><svg class="ic" width="16" height="16"><use href="#i-check"/></svg>Aves, caranguejos e a vida do ecossistema</li>
+          <li><svg class="ic" width="16" height="16"><use href="#i-check"/></svg>Explicações do guia sobre o que você está vendo</li>
+        </ul>
+        <a href="#pedido" class="btn btn-primary btn-sm">Pedir Passeio</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="padding:0;">
+    <div class="wrap">
+      <div class="reveal">
+        <h2>Pôr do sol na baía, com a serra ao fundo.</h2>
+        <p>Nos passeios do fim da tarde, o mangue muda de cor. Os horários dependem da maré e do clima.</p>
+        <div class="glass-row">
+          <div class="glass"><svg class="ic" width="16" height="16"><use href="#i-wave"/></svg>Maré e clima</div>
+          <div class="glass"><svg class="ic" width="16" height="16"><use href="#i-chat"/></svg>Confirmação pelo WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona">
+    <div class="wrap">
+      <div class="section-head reveal"><h2>Como Funciona</h2></div>
+      <div class="steps">
+        <div class="step reveal"><span class="num">01</span><svg class="ic" width="26" height="26"><use href="#i-cal"/></svg><h3>Peça o passeio</h3><p>Escolha a data e envie o pedido pelo site ou pelo WhatsApp.</p></div>
+        <div class="step reveal"><span class="num">02</span><svg class="ic" width="26" height="26"><use href="#i-chat"/></svg><h3>Receba a confirmação</h3><p>Confirmamos se a data funciona com a maré, o clima e a lotação.</p></div>
+        <div class="step reveal"><span class="num">03</span><svg class="ic" width="26" height="26"><use href="#i-wave"/></svg><h3>Reme no mangue</h3><p>Vá ao ponto de saída, receba as orientações e entre no mangue.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="passeio" style="padding-top:0;">
+    <div class="wrap">
+      <div class="dados reveal">
+        <div>
+          <h2>O Passeio</h2>
+          <p>Caiaque, remo, colete salva-vidas e orientação do guia em todo o percurso.</p>
+          <a href="#pedido" class="btn btn-whatsapp btn-sm">Pedir Passeio</a>
+        </div>
+        <dl>
+          <dt>Saída</dt><dd><span class="pendente">[ponto de encontro]</span></dd>
+          <dt>Duração</dt><dd><span class="pendente">[a confirmar]</span></dd>
+          <dt>Valor</dt><dd><span class="pendente">[a confirmar]</span></dd>
+          <dt>Grupo</dt><dd><span class="pendente">[a confirmar]</span></dd>
+          <dt>Inclui</dt><dd>Caiaque, remo e colete salva-vidas</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="pedido" style="padding-top:0;">
+    <div class="wrap">
+      <div class="pedido reveal">
+        <h2>Pronto para remar?</h2>
+        <p>Envie o pedido e confirmamos a data pelo WhatsApp, conforme maré e clima.</p>
+        <div class="pedido-btns">
+          <a href="#pedido" id="btnWa" class="btn btn-whatsapp"><svg class="ic" width="15" height="15"><use href="#i-wa"/></svg>Falar no WhatsApp</a>
+          <a href="https://www.instagram.com/remadaroortiz/" target="_blank" rel="noopener" class="btn btn-outline"><svg class="ic" width="15" height="15"><use href="#i-ig"/></svg>@remadaroortiz</a>
+        </div>
+        <form class="pedido-form" id="form-pedido" novalidate>
+          <label>Seu nome<input type="text" name="nome" autocomplete="name" required></label>
+          <div class="linha-dupla">
+            <label>Data desejada<input type="date" name="data" required></label>
+            <label>Pessoas<input type="number" name="pessoas" min="1" max="20" value="2" required></label>
+          </div>
+          <label>Mensagem (opcional)<textarea name="mensagem"></textarea></label>
+          <button type="submit" class="btn btn-primary" style="justify-content:center;">Enviar pedido pelo WhatsApp</button>
+          <p class="form-status" id="status" role="status" aria-live="polite"></p>
+          <p class="form-nota">O pedido não é uma reserva. A confirmação depende da maré, do clima e da lotação.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="padding-top:0;">
+    <div class="wrap faq-grid">
+      <div class="head reveal"><h2>Perguntas Frequentes</h2><p>As dúvidas mais comuns de quem vai remar pela primeira vez.</p></div>
+      <div class="reveal">
+        <details class="faq-item"><summary>O passeio pode ser em qualquer dia?<span class="plus"></span></summary><p>Não. Os passeios no mangue dependem da maré e do clima, por isso são combinados com antecedência e confirmados pelo WhatsApp.</p></details>
+        <details class="faq-item"><summary>Pedir o passeio é o mesmo que reservar?<span class="plus"></span></summary><p>Não. O pedido informa a data desejada. A vaga só está garantida depois da confirmação pelo WhatsApp.</p></details>
+        <details class="faq-item"><summary>Preciso saber remar?<span class="plus"></span></summary><p><span class="pendente">[confirmar com o Lauro]</span></p></details>
+        <details class="faq-item"><summary>O que levar e como me vestir?<span class="plus"></span></summary><p><span class="pendente">[confirmar com o Lauro]</span></p></details>
+        <details class="faq-item"><summary>Crianças podem participar?<span class="plus"></span></summary><p><span class="pendente">[confirmar com o Lauro]</span></p></details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="mobile-bar" id="mobileBar">
+  <span>Passeio no mangue</span>
+  <a href="#pedido" class="btn btn-primary btn-sm"><svg class="ic" width="15" height="15"><use href="#i-cal"/></svg>Pedir</a>
+</div>
+
+<script>
+  // Número de WhatsApp da Remada com DDI e DDD, só dígitos (ex.: 5527999999999). Preencher quando o Lauro confirmar.
+  var WHATSAPP = '5527999498337';
+
+  // Botão de WhatsApp: só vira link externo quando o número estiver configurado
+  var btnWa = document.getElementById('btnWa');
+  if (WHATSAPP) {
+    btnWa.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Olá! Quero saber mais sobre o passeio no manguezal.');
+    btnWa.target = '_blank'; btnWa.rel = 'noopener';
+  }
+
+  // Formulário: monta a mensagem e abre o WhatsApp com o texto pronto
+  var form = document.getElementById('form-pedido');
+  var status = document.getElementById('status');
+  form.data.setAttribute('min', new Date().toISOString().split('T')[0]);
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    status.className = 'form-status';
+    if (!form.nome.value.trim() || !form.data.value || !form.pessoas.value) {
+      status.className = 'form-status erro';
+      status.textContent = 'Preencha nome, data e número de pessoas para enviar.';
+      return;
+    }
+    if (!WHATSAPP) {
+      status.className = 'form-status erro';
+      status.textContent = 'Teste: o número de WhatsApp ainda não foi configurado no index.html.';
+      return;
+    }
+    var p = form.data.value.split('-');
+    var texto = 'Olá! Sou ' + form.nome.value.trim() + '. Quero fazer o passeio no manguezal em ' + p[2] + '/' + p[1] + '/' + p[0] +
+      ', para ' + form.pessoas.value + (form.pessoas.value === '1' ? ' pessoa.' : ' pessoas.') +
+      (form.mensagem.value.trim() ? ' ' + form.mensagem.value.trim() : '');
+    window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+    status.textContent = 'Pedido aberto no WhatsApp. Falta só enviar a mensagem.';
+  });
+
+  // Barra fixa do celular some quando a seção de pedido já está visível
+  (function(){
+    var bar = document.getElementById('mobileBar'), alvo = document.getElementById('pedido');
+    if(!bar || !alvo || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function(es){ es.forEach(function(e){ bar.classList.toggle('is-hidden', e.isIntersecting); }); }, {threshold:0.25}).observe(alvo);
+  })();
+</script>
+<script src="reveal.js"></script>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="images/logo.png" alt="Remada Roortiz" class="logo-img logo-img-footer">Remada Roortiz</div>
+        <p>Passeios de caiaque e barco no manguezal de Vitória-ES, com foco em turismo consciente e criativo.</p>
+        <div class="social-row"><a href="https://www.instagram.com/remadaroortiz/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ic" width="14" height="14" style="color:#fff"><use href="#i-ig"/></svg></a></div>
+      </div>
+      <div class="footer-col">
+        <h5>Navegação</h5>
+        <a href="#top">Home</a><a href="#sobre">Sobre</a><a href="#como-funciona">Como Funciona</a><a href="#passeio">O Passeio</a><a href="#faq">Ajuda</a>
+      </div>
+      <div class="footer-col">
+        <h5>Informações</h5>
+        <a href="#faq">Perguntas frequentes</a><a href="#pedido">Pedir um passeio</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contato</h5>
+        <a href="https://www.instagram.com/remadaroortiz/" target="_blank" rel="noopener">@remadaroortiz</a>
+        <a href="#pedido"><span class="pendente">[WhatsApp a confirmar]</span></a>
+        <a href="#top">Vitória - ES</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Remada Roortiz. Todos os direitos reservados.</span><span>PT</span></div>
+  </div>
+</footer>
+
+</body>
+</html>
